@@ -1,23 +1,23 @@
 // 1. Tạo 2 function tên và nội dung tùy ý theo 2 cách Function declaration và Function expression
 //Function declaration
-function Anh(x, y) {
+function anh(x, y) {
   console.log(x - y);
 }
 
 // Function expression
-const Anh = function (x, y) {
+const anh = function (x, y) {
   console.log(x - y);
 };
 
 // 2. Tạo 1 function có 3 parameters, nội dung là console log ra 3 parameters đó.
 // Call function đó với 3 trường hợp: call với 3 arguments, 2 arguments và 0 argument
-function Kieu(a, b, c) {
+function kieu(a, b, c) {
   console.log(a, b, c);
 }
 
-Kieu(1, 2, 3); //1 2 3
-Kieu(2, 3); //2 3 undefined
-Kieu(); //undefined
+kieu(1, 2, 3); //1 2 3
+kieu(2, 3); //2 3 undefined
+kieu(); //undefined
 
 // 3. Tạo 1 function nhận vào 1 parameter là 1 object bất kỳ.
 // Mutate object đó trong nội dung function. Console.log object đó trước và sau khi gọi function
@@ -25,11 +25,11 @@ Kieu(); //undefined
 const u = { task: "function" };
 console.log(u); //{task:'function'}
 
-function Baitap(hihi) {
+function baiTap(hihi) {
   hihi.task = "object";
 }
 
-Baitap(u);
+baiTap(u);
 console.log(u); //{task:'object'}
 
 // 4. Tạo 1 function nhận vào 2 parameters.
