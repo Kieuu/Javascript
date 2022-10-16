@@ -5,7 +5,7 @@ function aiSaTsu(name = "User") {
 }
 
 aiSaTsu("anh Duc"); //"Hello anh Duc"
-aiSaTsu(); // "Hello anh User"
+aiSaTsu(); // "Hello User"
 
 // 2.Tạo 1 function có 4 parameters, trong đó có 2 default parameters
 //  và các default parameters này sẽ dùng giá trị liên quan đến các parameters khác
