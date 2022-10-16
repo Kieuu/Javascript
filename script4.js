@@ -38,16 +38,12 @@ function fuelCalc(soLitXang) {
   return soLitXang * 22000;
 }
 
-function moneyCalc(fuelCalc) {
-  const maxium = 3.6;
+function waveAlpha2015FuelCalc(fuelCalc) {
+    const maxium = 3.6;
   return fuelCalc(maxium);
 }
 
-function waveAlpha2015FuelCalc(moneyCalc) {
-  return moneyCalc(maxium);
-}
-
-waveAlpha2015FuelCalc(moneyCalc);
+waveAlpha2015FuelCalc(fuelCalc);
 
 // 5. Tạo 1 function có nội dung chứa 3 biến được khai báo bằng let / const / var. thử truy cập 3 biến đó từ 1 function bên ngoài function trên.
 
