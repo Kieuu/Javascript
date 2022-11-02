@@ -5,8 +5,8 @@
 
 function sum(x) {
     let result = 0 
-    if (x < 1){
-        console.log("Please use a number that bigger than 1") 
+    if (x <= 1){
+        return "Please use a number that bigger than 1"
     } else {
         for (let i= 1;i<=x;i++) {
             result +=i 
@@ -48,7 +48,6 @@ function doubleAndTriple(x =[33, 141, 190]) {
      return  array 
     }
 
-5:19 PM
 // Câu 1
 // Tách nhánh js-loop từ nhánh chính. Tạo 1 file script-loop.js có chứa các nội dung bên dưới. Tạo 1 PR từ js-loop vào nhánh chính và dán link PR làm câu trả lời
 // Tạo function sum(x), nhận vào tham số x là 1 number. 
@@ -227,10 +226,11 @@ const testArr7 = [
 function genderFilter(x, y){
     let filterGender =  x.filter((item)=> {
         return item.gender === y
-        })
-    return filterGender.map((item)=> {
-        item.name
     })
+   let filterName = filterGender.map((index)=> {
+        return index.name
+    })
+    return filterName
 }
 
 genderFilter(testArr7, "male")
