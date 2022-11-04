@@ -41,8 +41,7 @@ const b11 = Number([12.5]); //12.5
 
 const b12 = function(x) {
 x = 10
-}
-//undefined
+}  //undefined
 
 /*
 3. Tạo 1 object tên là c dùng để mô tả 1 chiếc điện thoại (tên và nội dung các trường phải có liên quan đến chiếc điện thoại đó), với các yêu cầu sau
@@ -59,10 +58,10 @@ Xóa item thứ 2 từ trái qua của c4
 Thêm 1 item bất kỳ vào cuối c5
 */
 
-let c = {
+const c = {
     name: 'Galaxy S22',
     origin: 'Viet Nam',
-    kind: function(){
+    kind: function(x){
         if(this.origin === 'Viet Nam'){
             return 'Hang noi dia'
         }
@@ -70,32 +69,19 @@ let c = {
     }
 }
 
-c.name = 'IP 13'
+const c1 = Object.assign(c, {name:'IP 13'})
 
-c1 = c
+const c2 = Object.assign(c, {origin: 'Nhat Ban', price: '2000', sell: function(y){return 'Hết hàng'} })
 
-c.origin = 'Nhat Ban'
-c.price = '2000'
-c.sell = function(){return 'Hết hàng'}
-c2 = c
-
-
-delete c.name
-delete c.origin
-c.kind = function(){
+const c3 = Object.assign(c.kind, {kind: function(){
     if(this.origin === 'Viet Nam'){
         return 'Hang A'
     }
     return 'Hang B'
-}
-c3 = c
+}})
 
-c4 = Object.keys(c)
-c5 = Object.values(c)
-
-c4.splice(1,1)
-c5.push('ulatr0i')
-
+const c4 = Object.keys(c).splice(1,1)
+const c5 = Object.values(c).push('ulatr0i')
 
 
 /*
@@ -173,17 +159,108 @@ function chill(x = 'này') {
 
 function yearChecker(x) {
     if (x.includes('2022')){
-    return true
-}   return false
+    return 'true'
+}   return 'false'
 }
 
 function diskArea(x) {
     return x*3.14159265359
 }  
 
+
+
 function beforeLastIndex(x) {
-    if (typeof x === 'object') {
-    return 'true'
-} 
+    return x[x.length - 2]
 }
 
+
+
+//  isObject(x) {} : nhận vào 1 tham số x là kiểu dữ liệu bất kỳ, kiểm tra xem x có phải là 1 object hay không, trả về 1 boolean
+// VD isObject(12) sẽ trả về fasle, objectChecker({key: 'value'}) sẽ trả về true
+
+function isObject(x) {
+    if(typeof x === 'object'){
+        return true
+    }   return false
+}
+
+// - objectChecker(x) {} : nhận vào 1 tham số x là 1 object có các trường bất kỳ, bắt buộc có 1 trường là isChecked: false. Trả về 1 object mới có các trường giống như object x, 
+// nhưng giá trị trường "isChecked" sẽ là true
+// VD objectChecker({key: 'value', isChecked: false}) sẽ trả về 1 object mới = {{key: 'value', isChecked: true}}
+
+function objectChecker(x) {
+    x.isChecked = true
+    return x
+}
+
+// - propertyChecker(x, y) {}: nhận vào tham số x là 1 object có các trường bất kỳ và tham số y là 1 string bất kỳ. Kiểm tra xem object x đó có chứa trường nào tên giống như string y không, trả về 1 boolean
+// VD propertyChecker({key: 'value'}, 'key') sẽ trả về true
+// VD propertyChecker({key: 'value'}, 'key1') sẽ trả về false
+
+// Cách 1:
+function propertyChecker(x, y) {
+    return x.hasOwnProperty(y)
+}
+
+// Cách 2: 
+function propertyChecker(x, y) {
+    let keyExist = Object.keys(x).some(key => key === y);
+    return keyExist;
+}
+
+
+/* - 2 fucntion: convertJSONData(x) {} và fetchJSONData(y) {} :
+ + convertJSONData nhận vào 1 tham số x là 1 JSON object có dạng
+{
+statusCode: number,
+data: {
+message: string
+}
+}
+convertJSONData trả về giá trị của message
+
++ fetchJSONData nhận vào 1 tham số y là 1 callback function. Callback y này sẽ nhận vào tham số là 1 JSON là response từ API, JSON đó có dạng sau:
+{
+statusCode: number,
+data: {
+message: string
+}
+}
+và trả về giá trị của message
+
++ ngoài ra, trong nội dung fetchJSONData sẽ có 1 biến tên là JSONdata, có giá trị là 1 JSON có dạng như trên
+ Khi call createJSONData và truyền vào cho nó 1 callback, sẽ trả về giá trị của message
+
+
+VD fetchJSONData(x) {
+data = {
+statusCode: 200,
+data: {
+message: "Logged in sucessfully"
+}
+}
+
+// xử lý callback x ở đây
+}
+
+fetchJSONData(convertJSONData) sẽ trả về "Logged in sucessfully"
+*/
+
+
+function convertJSONData(x) {
+    return x.data.message
+}
+
+
+function fetchJSONData(y) {
+    let JSONdata = {
+        statusCode: 200,
+        data: {
+        message: "Logged in sucessfully" 
+    }
+}
+    return y(JSONdata)
+
+}
+
+fetchJSONData(convertJSONData)
