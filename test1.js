@@ -10,17 +10,17 @@ a5 sẽ có giá trị là phép kiểm tra a có chứa chữ 'nice' hay không
 */
 
 
-let a = 'Have a nice day'
+const a = 'Have a nice day'
 
-a1 = a.replace('day','weekend')
+const a1 = a.replace('day','weekend')
 
-a2 = a.replace('day','')
+const a2 = a.replace('day','')
 
-a3 = a.startsWith('h')
+const a3 = a.startsWith('h')
 
-a4 = a.toUpperCase ()
+const a4 = a.toUpperCase()
 
-a5 = a.includes('nice')
+const a5 = a.includes('nice')
 
 
 /*
@@ -31,7 +31,7 @@ const b1 = Number("10.000"); //10
 const b2 = Number(" 0.77 "); //0.77
 const b3 = Number("b3"); //NaN
 const b4 = Number("1+2"); //NaN
-const b5 = Number(null); //NaN
+const b5 = Number(null); //0
 const b6 = Number(undefined); //NaN
 const b7 = Number(false); //0
 const b8 = Number(""); //0
@@ -69,19 +69,33 @@ const c = {
     }
 }
 
-const c1 = Object.assign(c, {name:'IP 13'})
+const c1 = Object.assign(c, {name:'IP 13', origin: 'America', kind: function(x){
+    if(this.origin === 'Viet Nam'){
+        return 'Hang noi dia'
+    }
+    return 'Hang nhap khau'
+}})
 
-const c2 = Object.assign(c, {origin: 'Nhat Ban', price: '2000', sell: function(y){return 'Hết hàng'} })
+const c11 = Object.assign({},c, {name:'IP 13', origin: 'America', kind: function(x){
+    if(this.origin === 'Viet Nam'){
+        return 'Hang noi dia'
+    }
+    return 'Hang nhap khau'
+}})
 
-const c3 = Object.assign(c.kind, {kind: function(){
+const c2 = Object.assign({},c, {origin: 'Nhat Ban', price: '2000', sell: function(y){return 'Hết hàng'} })
+
+const c3 = Object.assign({},c.kind, {kind: function(){
     if(this.origin === 'Viet Nam'){
         return 'Hang A'
     }
     return 'Hang B'
 }})
 
-const c4 = Object.keys(c).splice(1,1)
-const c5 = Object.values(c).push('ulatr0i')
+const c4 = Object.keys(c)
+c4.splice(1,1)
+const c5 = Object.values(c)
+c5.push('ulatr0i')
 
 
 /*
@@ -158,20 +172,19 @@ function chill(x = 'này') {
 } 
 
 function yearChecker(x) {
-    if (x.includes('2022')){
-    return 'true'
-}   return 'false'
+    return x.includes('2022')
 }
 
 function diskArea(x) {
-    return x*3.14159265359
+    return x*x*3.14159265359
 }  
 
 
 
 function beforeLastIndex(x) {
+    if (x.length > 2){
     return x[x.length - 2]
-}
+}   return "Sai r0i" }
 
 
 
@@ -189,8 +202,7 @@ function isObject(x) {
 // VD objectChecker({key: 'value', isChecked: false}) sẽ trả về 1 object mới = {{key: 'value', isChecked: true}}
 
 function objectChecker(x) {
-    x.isChecked = true
-    return x
+    return Object.assign({},x,{isChecked:true})
 }
 
 // - propertyChecker(x, y) {}: nhận vào tham số x là 1 object có các trường bất kỳ và tham số y là 1 string bất kỳ. Kiểm tra xem object x đó có chứa trường nào tên giống như string y không, trả về 1 boolean
